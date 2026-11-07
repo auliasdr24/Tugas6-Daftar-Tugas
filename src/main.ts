@@ -58,6 +58,9 @@ const inputJudul = document.querySelector<HTMLInputElement>("#input-judul")!;
 const pesanError = document.querySelector<HTMLParagraphElement>("#pesan-error")!;
 const ulTugas = document.querySelector<HTMLUListElement>("#daftar-tugas")!;
 const teksKosong = document.querySelector<HTMLParagraphElement>("#kosong")!;
+const jumlahTugas = document.querySelector<HTMLParagraphElement>(
+  "#jumlah-tugas"
+)!;
 
 // ============================================
 // 5. OPERASI DATA (tambah / hapus / edit / ubah status)
@@ -169,6 +172,7 @@ function render(): void {
 
   // Empty state: pesan kalau daftar kosong
   teksKosong.hidden = tugasTampil.length > 0;
+  jumlahTugas.textContent = `Menampilkan ${tugasTampil.length} dari ${daftarTugas.length} tugas`;
 }
 
 render(); // tampilkan pertama kali saat aplikasi dibuka
