@@ -84,3 +84,11 @@ header h1 { font-size: 1.4rem; }
   #form-tambah { flex-direction: column; }
   .filter-btn { font-size: 0.75rem; padding: 6px 4px; }
 }
+
+/* Deskripsi fitur aplikasi */
+.info-fitur {
+  color: #888;
+  font-size: 0.8rem;
+  text-align: center;
+  margin-top: 8px;
+}
