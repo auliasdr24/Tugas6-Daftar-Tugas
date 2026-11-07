@@ -92,3 +92,10 @@ header h1 { font-size: 1.4rem; }
   text-align: center;
   margin-top: 8px;
 }
+
+#jumlah-tugas {
+  text-align: center;
+  color: #666;
+  font-size: 0.9rem;
+  margin-top: 12px;
+}
