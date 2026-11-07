@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daftar Tugas Kuliah</title>
+  </head>
+  <body>
+    <main class="kartu">
+      <header>
+        <h1>📚 Daftar Tugas Kuliah</h1>
+        <p class="sub">Kelola tugasmu, jangan sampai lupa deadline!</p>
+        <p id="info-aplikasi"></p>
+      </header>
+
+      <!-- Form tambah tugas -->
+      <form id="form-tambah">
+        <input id="input-judul" type="text" placeholder="Contoh: Kumpulkan laporan PAW" autocomplete="off" />
+        <button type="submit">+ Tambah</button>
+      </form>
+      <p id="pesan-error" class="error" hidden></p>
+
+      <!-- Filter status -->
+      <div class="filter">
+        <button class="filter-btn aktif" data-filter="semua">Semua</button>
+        <button class="filter-btn" data-filter="belum">Belum Selesai</button>
+        <button class="filter-btn" data-filter="selesai">Selesai</button>
+      </div>
+
+      <!-- Daftar tugas -->
+      <ul id="daftar-tugas"></ul>
+      <p id="kosong" class="kosong" hidden>Tidak ada tugas di kategori ini 🎉</p>
+    </main>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
