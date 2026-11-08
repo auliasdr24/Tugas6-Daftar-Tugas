@@ -1,9 +1,11 @@
 # Aplikasi Daftar Tugas Mahasiswa
 
 ## Deskripsi
+
 Aplikasi Daftar Tugas Mahasiswa merupakan aplikasi web sederhana untuk membantu mahasiswa mencatat dan mengelola tugas kuliah. Aplikasi ini dibuat menggunakan TypeScript dan Vite sebagai bagian dari tugas Praktikum Aplikasi Web (PAW) Pertemuan 6.
 
 ## Fitur Aplikasi
+
 - Menambahkan tugas baru.
 - Mengedit judul tugas.
 - Menghapus tugas.
@@ -12,6 +14,7 @@ Aplikasi Daftar Tugas Mahasiswa merupakan aplikasi web sederhana untuk membantu 
 - Menampilkan jumlah tugas.
 
 ## Teknologi yang Digunakan
+
 - **HTML**: Membuat struktur halaman web.
 - **CSS**: Mengatur tampilan dan tata letak aplikasi.
 - **TypeScript**: Mengembangkan logika aplikasi dengan sistem tipe data.
@@ -82,6 +85,7 @@ tugas6-daftar-tugas/
 TypeScript digunakan untuk membantu penulisan kode agar lebih terstruktur dan mengurangi kesalahan tipe data.
 
 Konsep TypeScript yang diterapkan:
+
 - **Primitive Types**: Menggunakan `number`, `string`, dan `boolean`.
 - **Array**: Menggunakan `Tugas[]` untuk menyimpan daftar tugas.
 - **Interface**: Menggunakan `interface Tugas` untuk menentukan struktur data tugas.
@@ -90,9 +94,10 @@ Konsep TypeScript yang diterapkan:
 
 ## Penerapan Git dan GitHub
 
-Git digunakan untuk mencatat perubahan kode selama pengembangan aplikasi. GitHub digunakan untuk menyimpan repository secara online.
+Git digunakan untuk mencatat perubahan kode selama proses pengembangan aplikasi. GitHub digunakan untuk menyimpan repository secara online.
 
 Dalam pengerjaan proyek ini diterapkan:
+
 - Membuat repository GitHub.
 - Menggunakan beberapa branch untuk mengembangkan fitur.
 - Melakukan commit untuk mencatat perubahan.
@@ -105,24 +110,26 @@ Dalam pengerjaan proyek ini diterapkan:
 
 **npm (Node Package Manager)** digunakan untuk mengelola package dan dependency yang dibutuhkan proyek. Dependency utama pengembangan disimpan pada bagian `devDependencies` di `package.json`.
 
-**Vite** digunakan sebagai development server dan build tool. Vite menyediakan server lokal selama pengembangan serta mengoptimalkan file aplikasi untuk kebutuhan production.
+**Vite** digunakan sebagai development server dan build tool. Vite menyediakan server lokal selama pengembangan serta membantu memproses file aplikasi untuk kebutuhan production.
 
 Perintah yang digunakan:
+
 - `npm run dev`: Menjalankan aplikasi dalam mode pengembangan.
 - `npm run build`: Menjalankan pemeriksaan TypeScript dan membuat hasil build production.
 - `npm run preview`: Menampilkan hasil build secara lokal.
 
 ## Compiler, Transpiler, dan Bundler
 
-- **Compiler** adalah program yang menerjemahkan atau memeriksa kode sumber agar sesuai dengan aturan bahasa pemrograman. Dalam proyek ini, TypeScript Compiler (`tsc`) memeriksa tipe data dan menghasilkan JavaScript.
+- **Compiler** adalah program yang menerjemahkan atau memeriksa kode sumber berdasarkan aturan bahasa pemrograman. Dalam proyek ini, TypeScript Compiler (`tsc`) digunakan untuk memeriksa tipe data dan menghasilkan JavaScript.
 - **Transpiler** adalah alat yang mengubah kode dari satu bentuk atau versi bahasa ke bentuk lain. TypeScript ditranspilasi menjadi JavaScript agar dapat dijalankan oleh browser.
-- **Bundler** adalah alat yang menggabungkan dan memproses file-file aplikasi beserta dependency menjadi file yang siap digunakan. Vite menggunakan proses bundling untuk menghasilkan file production.
+- **Bundler** adalah alat yang menggabungkan dan memproses file aplikasi beserta dependency menjadi file yang siap digunakan. Dalam proyek ini, Vite digunakan untuk proses bundling saat membuat hasil build production.
 
 ## Environment Variables
 
 Environment variable digunakan untuk menyimpan konfigurasi aplikasi agar tidak perlu ditulis langsung pada kode program.
 
 Konfigurasi yang digunakan:
+
 - `VITE_APP_NAME`: Nama aplikasi.
 - `VITE_APP_VERSION`: Versi aplikasi.
 
