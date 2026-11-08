@@ -27,15 +27,10 @@ type Filter = "semua" | "belum" | "selesai";
 // 2. DATA (array) & STATE
 // ============================================
 
-// Array berisi objek Tugas
-let daftarTugas: Tugas[] = [
-  { id: 1, judul: "Kumpulkan tugas PAW pertemuan 6", selesai: false },
-  { id: 2, judul: "Baca materi basis data", selesai: true },
-];
+let daftarTugas: Tugas[] = [];
 
 let filterAktif: Filter = "semua";
-let idBerikutnya: number = 3;
-
+let idBerikutnya: number = 1;
 // ============================================
 // 3. GENERIC FUNCTION — materi TypeScript ✨
 // ============================================

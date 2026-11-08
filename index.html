@@ -35,6 +35,66 @@
       <p id="kosong" class="kosong" hidden>Tidak ada tugas di kategori ini 🎉</p>
     </main>
 
+    <!-- Dokumentasi Materi PAW -->
+    <section class="dokumentasi">
+      <h2>Dokumentasi Pengembangan Aplikasi</h2>
+
+      <h3>1. Git dan GitHub</h3>
+      <p>
+        Git digunakan untuk mencatat dan mengelola perubahan kode selama
+        pengembangan aplikasi. GitHub digunakan untuk menyimpan repository
+        secara online. Dalam proyek ini digunakan branch, commit, merge,
+        Pull Request, serta penyelesaian merge conflict.
+      </p>
+
+      <h3>2. npm</h3>
+      <p>
+        npm (Node Package Manager) digunakan untuk mengelola package dan
+        dependency yang dibutuhkan aplikasi. Perintah npm install digunakan
+        untuk memasang dependency, npm run dev untuk menjalankan aplikasi,
+        dan npm run build untuk membuat versi production.
+      </p>
+
+      <h3>3. TypeScript</h3>
+      <p>
+        TypeScript digunakan untuk mengembangkan logika aplikasi dengan
+        sistem tipe data. Penerapannya meliputi primitive types, array,
+        interface, type alias, union type, dan generic function.
+      </p>
+
+      <h3>4. Vite</h3>
+      <p>
+        Vite digunakan sebagai development server dan build tool.
+        Vite memudahkan proses pengembangan melalui server lokal serta
+        membantu menyiapkan file aplikasi untuk production.
+      </p>
+
+      <h3>5. Environment Variables</h3>
+      <p>
+        Environment variables digunakan untuk menyimpan konfigurasi aplikasi.
+        Proyek ini menggunakan VITE_APP_NAME untuk nama aplikasi dan
+        VITE_APP_VERSION untuk versi aplikasi. File .env digunakan untuk
+        konfigurasi lokal, sedangkan .env.example menjadi contoh konfigurasi.
+      </p>
+
+      <h3>6. Compiler, Transpiler, dan Bundler</h3>
+      <p>
+        Compiler adalah alat yang memeriksa dan menerjemahkan kode sumber.
+        Dalam proyek ini, TypeScript Compiler (tsc) memeriksa tipe data
+        dan menghasilkan JavaScript.
+      </p>
+      <p>
+        Transpiler mengubah kode dari satu bahasa atau versi bahasa ke
+        bentuk lain. TypeScript ditranspilasi menjadi JavaScript agar
+        dapat dijalankan oleh browser.
+      </p>
+      <p>
+        Bundler menggabungkan dan memproses file aplikasi beserta
+        dependency menjadi file yang siap digunakan. Proses build Vite
+        menghasilkan file production di dalam folder dist.
+      </p>
+    </section>
+
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
