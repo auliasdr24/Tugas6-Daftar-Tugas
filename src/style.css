@@ -1,140 +1,890 @@
-* { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* =========================================
+   1. GLOBAL STYLE & COLOR PALETTE
+========================================= */
+
+:root {
+  --celadonite: #B9D3C1;
+  --green-plaza: #98A76E;
+  --white-grape: #BBCC99;
+  --dark-green: #354638;
+  --soft-bg: #F5F8F2;
+  --white: #FFFFFF;
+  --text: #3E493F;
+  --muted: #778276;
+  --border: #E2EADD;
+
+  --danger: #C05252;
+  --warning-bg: #FFF5E8;
+  --warning-text: #B77932;
+  --success-bg: #EDF5EA;
+  --success-text: #587A50;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 body {
   font-family: "Segoe UI", Tahoma, sans-serif;
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  background:
+    radial-gradient(circle at top left, #E8EFE4 0, transparent 35%),
+    var(--soft-bg);
+  color: var(--text);
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  padding: 16px;
+  padding: 45px 18px;
+  line-height: 1.6;
 }
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button,
+select {
+  cursor: pointer;
+}
+
+button {
+  transition: 0.2s ease;
+}
+
+/* =========================================
+   2. MAIN CONTAINER
+========================================= */
 
 .kartu {
-  background: white;
   width: 100%;
-  max-width: 480px;
-  border-radius: 16px;
-  padding: 24px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  max-width: 790px;
+  margin: 0 auto;
+  padding: 34px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 23px;
+  box-shadow: 0 12px 35px rgba(53, 70, 56, 0.07);
 }
 
-header h1 { font-size: 1.4rem; }
-.sub { color: #777; font-size: 0.9rem; margin-top: 4px; }
+/* =========================================
+   3. HEADER
+========================================= */
 
-#form-tambah { display: flex; gap: 8px; margin-top: 16px; }
-#input-judul {
-  flex: 1;
-  padding: 10px 12px;
-  border: 2px solid #ddd;
-  border-radius: 8px;
-  font-size: 1rem;
+.header-aplikasi {
+  text-align: center;
+  margin-bottom: 28px;
 }
-#input-judul:focus { outline: none; border-color: #667eea; }
-#form-tambah button {
-  padding: 10px 14px;
+
+.header-aplikasi h1 {
+  color: var(--dark-green);
+  font-size: 1.8rem;
+  font-weight: 750;
+  letter-spacing: -0.7px;
+}
+
+.sub {
+  color: var(--muted);
+  font-size: 0.92rem;
+  margin-top: 5px;
+}
+
+#info-aplikasi {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 5px 13px;
+  border-radius: 20px;
+  background: #EDF3E7;
+  color: var(--dark-green);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+/* =========================================
+   4. BUTTON TAMBAH TUGAS
+========================================= */
+
+.btn-tambah {
+  width: 100%;
+  min-height: 49px;
   border: none;
-  border-radius: 8px;
-  background: #667eea;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
+  border-radius: 12px;
+  background: var(--dark-green);
+  color: var(--white);
+  font-size: 0.95rem;
+  font-weight: 650;
+  box-shadow: 0 4px 12px rgba(53, 70, 56, 0.12);
 }
-#form-tambah button:hover { background: #5a6fd6; }
 
-.error { color: #e53e3e; font-size: 0.85rem; margin-top: 8px; }
-
-.filter { display: flex; gap: 8px; margin-top: 16px; }
-.filter-btn {
-  flex: 1;
-  padding: 8px;
-  border: 1px solid #ddd;
-  background: #f7f7f9;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 0.85rem;
+.btn-tambah span {
+  font-size: 1.2rem;
+  margin-right: 5px;
 }
-.filter-btn.aktif { background: #667eea; color: white; border-color: #667eea; }
 
-#daftar-tugas {
-  list-style: none;
-  margin-top: 16px;
+.btn-tambah:hover {
+  background: var(--green-plaza);
+  transform: translateY(-1px);
+}
+
+/* =========================================
+   5. SEARCH & FILTER MATA KULIAH
+========================================= */
+
+.area-filter {
   display: flex;
-  flex-direction: column;
-  gap: 8px;
+  gap: 12px;
+  margin-top: 25px;
+  align-items: center;
 }
-#daftar-tugas li {
+
+.pencarian {
+  flex: 1.5;
+  min-width: 0;
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 10px 12px;
-  border: 1px solid #eee;
-  border-radius: 8px;
-  background: #fafafa;
-}
-#daftar-tugas li.selesai .judul { text-decoration: line-through; color: #aaa; }
-.judul { flex: 1; word-break: break-word; }
-.cek { border: none; background: none; cursor: pointer; font-size: 1.1rem; }
-.aksi { border: none; background: none; cursor: pointer; font-size: 1rem; }
-.kosong { text-align: center; color: #999; margin-top: 16px; }
-
-/* Responsif: penyesuaian untuk layar HP */
-@media (max-width: 480px) {
-  .kartu { padding: 16px; }
-  #form-tambah { flex-direction: column; }
-  .filter-btn { font-size: 0.75rem; padding: 6px 4px; }
+  gap: 10px;
+  padding: 0 14px;
+  min-height: 45px;
+  border: 1px solid var(--border);
+  border-radius: 11px;
+  background: #FAFCF8;
+  color: var(--muted);
+  transition: 0.2s;
 }
 
-/* Deskripsi fitur aplikasi */
-.info-fitur {
-  color: #888;
-  font-size: 0.8rem;
-  text-align: center;
-  margin-top: 8px;
+.pencarian:focus-within {
+  border-color: var(--green-plaza);
+  box-shadow: 0 0 0 3px rgba(152, 167, 110, 0.12);
+}
+
+.pencarian > span {
+  font-size: 1.3rem;
+}
+
+#input-search {
+  flex: 1;
+  width: 100%;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--text);
+  font-size: 0.88rem;
+}
+
+#input-search::placeholder {
+  color: #A0AA9D;
+}
+
+#filter-matkul {
+  flex: 1;
+  min-width: 0;
+  min-height: 45px;
+  padding: 0 12px;
+  border: 1px solid var(--border);
+  border-radius: 11px;
+  background: #FAFCF8;
+  color: var(--dark-green);
+  font-size: 0.82rem;
+  outline: none;
+}
+
+#filter-matkul:focus {
+  border-color: var(--green-plaza);
+}
+
+/* =========================================
+   6. FILTER STATUS
+========================================= */
+
+.filter {
+  display: flex;
+  width: 100%;
+  gap: 9px;
+  margin-top: 15px;
+  padding: 5px;
+  background: #F3F6F0;
+  border-radius: 12px;
+}
+
+.filter-btn {
+  flex: 1;
+  min-width: 0;
+  padding: 10px 5px;
+  border: none;
+  border-radius: 9px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 0.84rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.filter-btn:hover {
+  color: var(--dark-green);
+  background: #E8EEE2;
+}
+
+.filter-btn.aktif {
+  background: var(--dark-green);
+  color: var(--white);
+  box-shadow: 0 2px 7px rgba(53, 70, 56, 0.12);
+}
+
+/* =========================================
+   7. SORTING & TASK COUNT
+========================================= */
+
+.baris-pengurutan {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 25px;
+  margin-bottom: 13px;
 }
 
 #jumlah-tugas {
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+#sort-tugas {
+  padding: 7px 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--white);
+  color: var(--dark-green);
+  font-size: 0.78rem;
+  outline: none;
+}
+
+/* =========================================
+   8. TASK LIST
+========================================= */
+
+#daftar-tugas {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  list-style: none;
+}
+
+.kartu-tugas {
+  padding: 17px 18px;
+  border: 1px solid var(--border);
+  border-radius: 13px;
+  background: #FCFDFB;
+  transition: 0.2s ease;
+}
+
+.kartu-tugas:hover {
+  border-color: var(--white-grape);
+  background: #FAFCF8;
+  box-shadow: 0 5px 15px rgba(53, 70, 56, 0.05);
+  transform: translateY(-1px);
+}
+
+.kartu-tugas.selesai {
+  background: #F8FAF6;
+}
+
+.tugas-utama {
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+}
+
+.cek {
+  flex-shrink: 0;
+  width: 21px;
+  height: 21px;
+  margin-top: 2px;
+  border: 1.7px solid #A9B59F;
+  border-radius: 6px;
+  background: var(--white);
+  color: var(--white);
+  font-size: 0.8rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cek:hover {
+  border-color: var(--green-plaza);
+  background: #EDF3E7;
+}
+
+.kartu-tugas.selesai .cek {
+  background: var(--green-plaza);
+  border-color: var(--green-plaza);
+}
+
+.tugas-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.judul {
+  color: var(--dark-green);
+  font-size: 0.96rem;
+  font-weight: 650;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+.kartu-tugas.selesai .judul {
+  color: #899486;
+  text-decoration: line-through;
+}
+
+.tugas-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 9px;
+  margin-top: 8px;
+}
+
+.label-matkul {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 20px;
+  background: #EDF3E7;
+  color: var(--dark-green);
+  font-size: 0.73rem;
+  font-weight: 650;
+}
+
+.tanggal-tugas {
+  color: var(--muted);
+  font-size: 0.76rem;
+}
+
+.tugas-bawah {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 14px;
+  padding-top: 11px;
+  border-top: 1px solid #EDF1E9;
+}
+
+.status-tugas {
+  font-size: 0.73rem;
+  font-weight: 650;
+  padding: 4px 9px;
+  border-radius: 20px;
+}
+
+.status-belum {
+  color: var(--warning-text);
+  background: var(--warning-bg);
+}
+
+.status-selesai {
+  color: var(--success-text);
+  background: var(--success-bg);
+}
+
+.status-terlambat {
+  color: #B94C4C;
+  background: #FFF0F0;
+}
+
+.btn-detail {
+  border: none;
+  background: transparent;
+  color: var(--dark-green);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.btn-detail:hover {
+  color: var(--green-plaza);
+}
+
+/* =========================================
+   9. EMPTY STATE
+========================================= */
+
+.kosong {
+  padding: 35px 15px;
+  margin-top: 10px;
   text-align: center;
-  color: #666;
+  border: 1px dashed var(--border);
+  border-radius: 13px;
+  background: #FAFCF8;
+}
+
+.kosong > span {
+  font-size: 2rem;
+}
+
+.kosong p {
+  margin-top: 8px;
+  color: var(--dark-green);
+  font-weight: 650;
+}
+
+.kosong small {
+  display: block;
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+/* =========================================
+   10. TASK SUMMARY
+========================================= */
+
+.ringkasan {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 11px;
+  margin-top: 25px;
+}
+
+.ringkasan-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 14px 7px;
+  border: 1px solid var(--border);
+  border-radius: 11px;
+  background: #FAFCF8;
+}
+
+.ringkasan-item span {
+  color: var(--dark-green);
+  font-size: 1.35rem;
+  font-weight: 750;
+}
+
+.ringkasan-item small {
+  color: var(--muted);
+  font-size: 0.73rem;
+  text-align: center;
+}
+
+/* =========================================
+   11. FOOTER & GITHUB DOCUMENTATION
+========================================= */
+
+.footer-aplikasi {
+  margin-top: 25px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+
+.footer-aplikasi p {
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.footer-aplikasi a {
+  display: inline-block;
+  margin-top: 6px;
+  color: var(--dark-green);
+  font-size: 0.8rem;
+  font-weight: 650;
+  text-decoration: none;
+}
+
+.footer-aplikasi a:hover {
+  color: var(--green-plaza);
+  text-decoration: underline;
+}
+
+/* =========================================
+   12. MODAL
+========================================= */
+
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal.terbuka {
+  display: flex;
+}
+
+.modal-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(35, 49, 37, 0.52);
+  backdrop-filter: blur(3px);
+}
+
+.modal-konten {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 510px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 27px;
+  border: 1px solid var(--border);
+  border-radius: 19px;
+  background: var(--white);
+  box-shadow: 0 20px 55px rgba(0, 0, 0, 0.18);
+  animation: modalMasuk 0.2s ease;
+}
+
+@keyframes modalMasuk {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 23px;
+}
+
+.modal-header h2 {
+  color: var(--dark-green);
+  font-size: 1.25rem;
+}
+
+.modal-header p {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.btn-tutup {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  border: none;
+  border-radius: 8px;
+  background: #F1F4EE;
+  color: var(--dark-green);
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+.btn-tutup:hover {
+  background: #E5EBDD;
+}
+
+/* =========================================
+   13. FORM MODAL
+========================================= */
+
+#form-tugas {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  color: var(--dark-green);
+  font-size: 0.83rem;
+  font-weight: 650;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 11px 12px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: #FAFCF8;
+  color: var(--text);
+  font-size: 0.86rem;
+  outline: none;
+  transition: 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--green-plaza);
+  box-shadow: 0 0 0 3px rgba(152, 167, 110, 0.12);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 85px;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #A0AA9D;
+}
+
+.modal-aksi {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 7px;
+}
+
+.modal-aksi button {
+  min-height: 40px;
+  padding: 9px 17px;
+  border-radius: 9px;
+  font-size: 0.83rem;
+  font-weight: 650;
+}
+
+.btn-batal {
+  border: 1px solid var(--border);
+  background: var(--white);
+  color: var(--muted);
+}
+
+.btn-batal:hover {
+  background: #F4F6F1;
+}
+
+.btn-simpan {
+  border: none;
+  background: var(--dark-green);
+  color: var(--white);
+}
+
+.btn-simpan:hover {
+  background: var(--green-plaza);
+}
+
+.btn-hapus {
+  border: 1px solid #F0DADA;
+  background: #FFF5F5;
+  color: var(--danger);
+}
+
+.btn-hapus:hover {
+  background: #FCE8E8;
+}
+
+.error {
+  padding: 9px 12px;
+  border-radius: 8px;
+  background: #FFF0F0;
+  color: var(--danger);
+  font-size: 0.82rem;
+}
+
+/* =========================================
+   14. DETAIL MODAL
+========================================= */
+
+.modal-detail {
+  max-width: 480px;
+}
+
+#isi-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.detail-item {
+  padding-bottom: 13px;
+  border-bottom: 1px solid #EDF1E9;
+}
+
+.detail-item:last-child {
+  border-bottom: none;
+}
+
+.detail-item small {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+
+.detail-item h3,
+.detail-item p {
+  color: var(--text);
   font-size: 0.9rem;
-  margin-top: 12px;
+  overflow-wrap: anywhere;
 }
 
-/* Dokumentasi Materi PAW */
-.dokumentasi {
-  max-width: 700px;
-  margin: 30px auto;
-  padding: 25px;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  line-height: 1.7;
+.detail-item h3 {
+  color: var(--dark-green);
+  font-size: 1rem;
 }
 
-.dokumentasi h2 {
-  text-align: center;
-  margin-bottom: 25px;
-  color: #333;
+.detail-item a {
+  color: var(--dark-green);
+  font-size: 0.86rem;
+  font-weight: 650;
+  overflow-wrap: anywhere;
 }
 
-.dokumentasi h3 {
+.status-detail {
+  font-weight: 650;
+}
+
+.modal-detail > .modal-aksi {
   margin-top: 20px;
-  margin-bottom: 8px;
-  color: #444;
-  font-size: 17px;
+  justify-content: space-between;
 }
 
-.dokumentasi p {
-  margin-bottom: 12px;
-  color: #555;
-  font-size: 14px;
-  text-align: justify;
+/* =========================================
+   15. TABLET
+========================================= */
+
+@media (max-width: 768px) {
+  body {
+    padding: 30px 15px;
+  }
+
+  .kartu {
+    max-width: 680px;
+    padding: 27px;
+  }
 }
 
-@media (max-width: 600px) {
-  .dokumentasi {
-    margin: 20px 12px;
-    padding: 18px;
+/* =========================================
+   16. MOBILE
+========================================= */
+
+@media (max-width: 480px) {
+  body {
+    padding: 17px 10px;
+  }
+
+  .kartu {
+    padding: 21px 15px;
+    border-radius: 17px;
+  }
+
+  .header-aplikasi {
+    margin-bottom: 22px;
+  }
+
+  .header-aplikasi h1 {
+    font-size: 1.4rem;
+  }
+
+  .sub {
+    font-size: 0.8rem;
+  }
+
+  .area-filter {
+    gap: 7px;
+    margin-top: 20px;
+  }
+
+  .pencarian {
+    flex: 1.2;
+    gap: 6px;
+    padding: 0 9px;
+    min-height: 43px;
+  }
+
+  #input-search {
+    font-size: 0.78rem;
+  }
+
+  #filter-matkul {
+    flex: 1;
+    min-height: 43px;
+    padding: 0 6px;
+    font-size: 0.7rem;
+  }
+
+  .filter {
+    gap: 5px;
+    margin-top: 12px;
+  }
+
+  .filter-btn {
+    padding: 10px 2px;
+    font-size: 0.69rem;
+  }
+
+  .baris-pengurutan {
+    margin-top: 20px;
+  }
+
+  #sort-tugas {
+    font-size: 0.7rem;
+    padding: 7px 6px;
+  }
+
+  .kartu-tugas {
+    padding: 14px 12px;
+  }
+
+  .judul {
+    font-size: 0.86rem;
+  }
+
+  .label-matkul,
+  .tanggal-tugas,
+  .status-tugas {
+    font-size: 0.68rem;
+  }
+
+  .btn-detail {
+    font-size: 0.7rem;
+  }
+
+  .ringkasan {
+    gap: 7px;
+  }
+
+  .ringkasan-item {
+    padding: 12px 4px;
+  }
+
+  .ringkasan-item span {
+    font-size: 1.15rem;
+  }
+
+  .ringkasan-item small {
+    font-size: 0.64rem;
+  }
+
+  .modal {
+    padding: 12px;
+  }
+
+  .modal-konten {
+    padding: 21px 17px;
+    border-radius: 15px;
+    max-height: 92vh;
+  }
+
+  .modal-header h2 {
+    font-size: 1.1rem;
+  }
+
+  .modal-aksi button {
+    padding: 9px 12px;
+    font-size: 0.76rem;
   }
 }

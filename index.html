@@ -1,99 +1,262 @@
+
 <!doctype html>
 <html lang="id">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Daftar Tugas Kuliah</title>
+    <meta
+      name="description"
+      content="Aplikasi pengelola tugas kuliah mahasiswa."
+    />
+    <title>Daftar Tugas Mahasiswa</title>
   </head>
+
   <body>
     <main class="kartu">
-      <header>
+      <!-- HEADER -->
+      <header class="header-aplikasi">
         <h1>📚 Daftar Tugas Mahasiswa</h1>
-        <p class="sub">Kelola tugasmu, jangan sampai lupa deadline!</p>
+        <p class="sub">
+          Atur tugas kuliah dan pantau deadline-mu dengan mudah.
+        </p>
         <p id="info-aplikasi"></p>
-        <p class="info-fitur">Aplikasi pengelola tugas kuliah berbasis TypeScript.</p>
-        <p class="info-fitur">Catat dan pantau progres tugas kuliah dengan mudah.</p>
       </header>
 
-      <!-- Form tambah tugas -->
-      <form id="form-tambah">
-        <input id="input-judul" type="text" placeholder="Contoh: Kumpulkan laporan PAW" autocomplete="off" />
-        <button type="submit">+ Tambah</button>
-      </form>
-      <p id="pesan-error" class="error" hidden></p>
+      <!-- TOMBOL TAMBAH -->
+      <button type="button" id="btn-tambah" class="btn-tambah">
+        <span>＋</span> Tambah Tugas Baru
+      </button>
 
-      <!-- Filter status -->
-      <div class="filter">
-        <button class="filter-btn aktif" data-filter="semua">Semua</button>
-        <button class="filter-btn" data-filter="belum">Belum Selesai</button>
-        <button class="filter-btn" data-filter="selesai">Selesai</button>
+      <!-- PENCARIAN DAN FILTER MATA KULIAH -->
+      <section class="area-filter">
+        <div class="pencarian">
+          <span>⌕</span>
+          <input
+            type="search"
+            id="input-search"
+            placeholder="Cari tugas..."
+            autocomplete="off"
+          />
+        </div>
+
+        <select id="filter-matkul" aria-label="Filter mata kuliah">
+          <option value="semua">Semua Mata Kuliah</option>
+        </select>
+      </section>
+
+      <!-- FILTER STATUS -->
+      <div class="filter" role="group" aria-label="Filter status tugas">
+        <button class="filter-btn aktif" data-filter="semua">
+          Semua
+        </button>
+        <button class="filter-btn" data-filter="belum">
+          Belum Selesai
+        </button>
+        <button class="filter-btn" data-filter="selesai">
+          Selesai
+        </button>
       </div>
 
-      <!-- Daftar tugas -->
-      <ul id="daftar-tugas"></ul>
-      <p id="jumlah-tugas"></p>
-      <p id="kosong" class="kosong" hidden>Tidak ada tugas di kategori ini 🎉</p>
+      <!-- PENGURUTAN -->
+      <div class="baris-pengurutan">
+        <span id="jumlah-tugas">0 tugas</span>
+
+        <select id="sort-tugas" aria-label="Urutkan tugas">
+          <option value="judul">Nama A–Z</option>
+          <option value="deadline">Deadline Terdekat</option>
+        </select>
+      </div>
+
+      <!-- DAFTAR TUGAS -->
+      <section class="bagian-daftar">
+        <ul id="daftar-tugas"></ul>
+
+        <div id="kosong" class="kosong" hidden>
+          <span>📝</span>
+          <p>Belum ada tugas yang ditampilkan.</p>
+          <small>Tambahkan tugas baru atau ubah filter pencarianmu.</small>
+        </div>
+      </section>
+
+      <!-- RINGKASAN -->
+      <section class="ringkasan">
+        <div class="ringkasan-item">
+          <span id="total-semua">0</span>
+          <small>Total Tugas</small>
+        </div>
+        <div class="ringkasan-item">
+          <span id="total-belum">0</span>
+          <small>Belum Selesai</small>
+        </div>
+        <div class="ringkasan-item">
+          <span id="total-selesai">0</span>
+          <small>Selesai</small>
+        </div>
+      </section>
+
+      <!-- LINK DOKUMENTASI -->
+      <footer class="footer-aplikasi">
+        <p>
+          Dibuat menggunakan TypeScript dan Vite.
+        </p>
+        <a
+          href="https://github.com/auliasdr24/Tugas6-Daftar-Tugas"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Lihat dokumentasi dan source code di GitHub ↗
+        </a>
+      </footer>
     </main>
 
-    <!-- Dokumentasi Materi PAW -->
-    <section class="dokumentasi">
-      <h2>Dokumentasi Pengembangan Aplikasi</h2>
+    <!-- MODAL TAMBAH / EDIT TUGAS -->
+    <div
+      id="modal-tugas"
+      class="modal"
+      aria-hidden="true"
+    >
+      <div class="modal-overlay" data-tutup="true"></div>
 
-      <h3>1. Git dan GitHub</h3>
-      <p>
-        Git digunakan untuk mencatat dan mengelola perubahan kode selama
-        pengembangan aplikasi. GitHub digunakan untuk menyimpan repository
-        secara online. Dalam proyek ini digunakan branch, commit, merge,
-        Pull Request, serta penyelesaian merge conflict.
-      </p>
+      <section
+        class="modal-konten"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="judul-modal"
+      >
+        <div class="modal-header">
+          <div>
+            <h2 id="judul-modal">Tambah Tugas Baru</h2>
+            <p>Lengkapi informasi tugas kuliahmu.</p>
+          </div>
+          <button
+            type="button"
+            class="btn-tutup"
+            data-tutup="true"
+            aria-label="Tutup modal"
+          >
+            ×
+          </button>
+        </div>
 
-      <h3>2. npm</h3>
-      <p>
-        npm (Node Package Manager) digunakan untuk mengelola package dan
-        dependency yang dibutuhkan aplikasi. Perintah npm install digunakan
-        untuk memasang dependency, npm run dev untuk menjalankan aplikasi,
-        dan npm run build untuk membuat versi production.
-      </p>
+        <form id="form-tugas">
+          <input type="hidden" id="tugas-id" />
 
-      <h3>3. TypeScript</h3>
-      <p>
-        TypeScript digunakan untuk mengembangkan logika aplikasi dengan
-        sistem tipe data. Penerapannya meliputi primitive types, array,
-        interface, type alias, union type, dan generic function.
-      </p>
+          <div class="form-group">
+            <label for="input-judul">Nama Tugas</label>
+            <input
+              type="text"
+              id="input-judul"
+              placeholder="Contoh: Membuat laporan praktikum"
+              required
+              minlength="3"
+              maxlength="100"
+            />
+          </div>
 
-      <h3>4. Vite</h3>
-      <p>
-        Vite digunakan sebagai development server dan build tool.
-        Vite memudahkan proses pengembangan melalui server lokal serta
-        membantu menyiapkan file aplikasi untuk production.
-      </p>
+          <div class="form-group">
+            <label for="input-matkul">Mata Kuliah</label>
+            <input
+              type="text"
+              id="input-matkul"
+              placeholder="Contoh: Pengembangan Aplikasi Web"
+              list="daftar-matkul"
+              required
+              maxlength="60"
+            />
+            <datalist id="daftar-matkul"></datalist>
+          </div>
 
-      <h3>5. Environment Variables</h3>
-      <p>
-        Environment variables digunakan untuk menyimpan konfigurasi aplikasi.
-        Proyek ini menggunakan VITE_APP_NAME untuk nama aplikasi dan
-        VITE_APP_VERSION untuk versi aplikasi. File .env digunakan untuk
-        konfigurasi lokal, sedangkan .env.example menjadi contoh konfigurasi.
-      </p>
+          <div class="form-group">
+            <label for="input-deadline">Deadline</label>
+            <input type="date" id="input-deadline" required />
+          </div>
 
-      <h3>6. Compiler, Transpiler, dan Bundler</h3>
-      <p>
-        Compiler adalah alat yang memeriksa dan menerjemahkan kode sumber.
-        Dalam proyek ini, TypeScript Compiler (tsc) memeriksa tipe data
-        dan menghasilkan JavaScript.
-      </p>
-      <p>
-        Transpiler mengubah kode dari satu bahasa atau versi bahasa ke
-        bentuk lain. TypeScript ditranspilasi menjadi JavaScript agar
-        dapat dijalankan oleh browser.
-      </p>
-      <p>
-        Bundler menggabungkan dan memproses file aplikasi beserta
-        dependency menjadi file yang siap digunakan. Proses build Vite
-        menghasilkan file production di dalam folder dist.
-      </p>
-    </section>
+          <div class="form-group">
+            <label for="input-deskripsi">Deskripsi Singkat</label>
+            <textarea
+              id="input-deskripsi"
+              rows="3"
+              placeholder="Tuliskan rincian tugas..."
+              maxlength="500"
+            ></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="input-link">Link Pengumpulan (Opsional)</label>
+            <input
+              type="url"
+              id="input-link"
+              placeholder="https://github.com/..."
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="input-status">Status Tugas</label>
+            <select id="input-status">
+              <option value="belum">Belum Selesai</option>
+              <option value="selesai">Selesai</option>
+            </select>
+          </div>
+
+          <p id="pesan-error" class="error" hidden></p>
+
+          <div class="modal-aksi">
+            <button
+              type="button"
+              class="btn-batal"
+              data-tutup="true"
+            >
+              Batal
+            </button>
+            <button type="submit" class="btn-simpan">
+              Tambahkan Tugas
+            </button>
+          </div>
+        </form>
+      </section>
+    </div>
+
+    <!-- MODAL DETAIL TUGAS -->
+    <div
+      id="modal-detail"
+      class="modal"
+      aria-hidden="true"
+    >
+      <div class="modal-overlay" data-tutup-detail="true"></div>
+
+      <section
+        class="modal-konten modal-detail"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="judul-detail"
+      >
+        <div class="modal-header">
+          <div>
+            <h2 id="judul-detail">Detail Tugas</h2>
+            <p>Informasi lengkap tugas kuliah.</p>
+          </div>
+          <button
+            type="button"
+            class="btn-tutup"
+            data-tutup-detail="true"
+            aria-label="Tutup detail"
+          >
+            ×
+          </button>
+        </div>
+
+        <div id="isi-detail"></div>
+
+        <div class="modal-aksi">
+          <button type="button" id="btn-hapus" class="btn-hapus">
+            Hapus
+          </button>
+          <button type="button" id="btn-edit" class="btn-simpan">
+            Edit Tugas
+          </button>
+        </div>
+      </section>
+    </div>
 
     <script type="module" src="/src/main.ts"></script>
   </body>
