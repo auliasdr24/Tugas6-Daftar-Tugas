@@ -6,12 +6,16 @@ Aplikasi Daftar Tugas Mahasiswa merupakan aplikasi web sederhana untuk membantu 
 
 ## Fitur Aplikasi
 
-- Menambahkan tugas baru.
-- Mengedit judul tugas.
+- Menambahkan tugas baru dengan informasi judul, mata kuliah, deadline, deskripsi, dan link pengumpulan.
+- Mengedit informasi tugas.
 - Menghapus tugas.
 - Mengubah status tugas menjadi selesai atau belum selesai.
-- Memfilter tugas berdasarkan status.
-- Menampilkan jumlah tugas.
+- Menampilkan detail tugas.
+- Mencari tugas berdasarkan status atau nama mata kuliah.
+- Memfilter tugas berdasarkan status dan mata kuliah.
+- Mengurutkan tugas berdasarkan judul atau deadline.
+- Menampilkan jumlah seluruh tugas, tugas yang belum selesai, dan tugas yang sudah selesai.
+- Menyimpan data tugas menggunakan LocalStorage agar data tetap tersedia setelah halaman di-refresh.
 
 ## Teknologi yang Digunakan
 
@@ -90,7 +94,7 @@ Konsep TypeScript yang diterapkan:
 - **Array**: Menggunakan `Tugas[]` untuk menyimpan daftar tugas.
 - **Interface**: Menggunakan `interface Tugas` untuk menentukan struktur data tugas.
 - **Type Alias dan Union Type**: Menggunakan `type Filter` dengan pilihan `"semua"`, `"belum"`, dan `"selesai"`.
-- **Generic**: Menggunakan fungsi `cariBerdasarkanId<T>` untuk mencari data berdasarkan ID.
+- **Generic**: Menggunakan fungsi `cariBerdasarkanId<T>` untuk mencari data berdasarkan ID dengan tipe data yang fleksibel.
 
 ## Penerapan Git dan GitHub
 
@@ -120,9 +124,9 @@ Perintah yang digunakan:
 
 ## Compiler, Transpiler, dan Bundler
 
-- **Compiler** adalah program yang menerjemahkan atau memeriksa kode sumber berdasarkan aturan bahasa pemrograman. Dalam proyek ini, TypeScript Compiler (`tsc`) digunakan untuk memeriksa tipe data dan menghasilkan JavaScript.
-- **Transpiler** adalah alat yang mengubah kode dari satu bentuk atau versi bahasa ke bentuk lain. TypeScript ditranspilasi menjadi JavaScript agar dapat dijalankan oleh browser.
-- **Bundler** adalah alat yang menggabungkan dan memproses file aplikasi beserta dependency menjadi file yang siap digunakan. Dalam proyek ini, Vite digunakan untuk proses bundling saat membuat hasil build production.
+- **Compiler** adalah program yang memeriksa dan menerjemahkan kode sumber berdasarkan aturan bahasa pemrograman. Dalam proyek ini, TypeScript Compiler (`tsc`) digunakan untuk memeriksa tipe data dan mendeteksi kesalahan penulisan TypeScript.
+- **Transpiler** adalah alat yang mengubah kode dari satu bentuk atau versi bahasa ke bentuk lain. Dalam proyek ini, esbuild yang digunakan oleh Vite membantu mengubah kode TypeScript menjadi JavaScript agar dapat dijalankan oleh browser.
+- **Bundler** adalah alat yang menggabungkan dan memproses file aplikasi beserta dependency menjadi file yang siap digunakan. Vite menggunakan proses bundling saat membuat hasil build production.
 
 ## Environment Variables
 
@@ -136,6 +140,12 @@ Konfigurasi yang digunakan:
 File `.env` digunakan untuk konfigurasi lokal dan tidak diunggah ke repository karena sudah dimasukkan ke `.gitignore`. File `.env.example` disediakan sebagai contoh konfigurasi bagi pengguna lain.
 
 Variabel dengan awalan `VITE_` dapat diakses oleh kode sisi browser, sehingga tidak boleh digunakan untuk menyimpan password, API key rahasia, atau informasi sensitif.
+
+## Penyimpanan Data
+
+Aplikasi menggunakan `localStorage` browser untuk menyimpan daftar tugas yang dimasukkan oleh pengguna.
+
+Data disimpan dalam format JSON sehingga dapat dibaca kembali ketika aplikasi dibuka atau halaman di-refresh. Penyimpanan ini bersifat lokal pada browser dan perangkat yang digunakan, sehingga data tidak otomatis tersinkronisasi dengan perangkat lain.
 
 ## Deployment
 
